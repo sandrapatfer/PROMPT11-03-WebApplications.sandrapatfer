@@ -53,7 +53,18 @@ namespace Mod03_WebApplications.ThumbsAndWatermarking {
         /// <summary>
         /// The <see cref="ThumbsHandlerArguments"/> instance.
         /// </summary>
-        private readonly ThumbsHandlerArguments _wmHandlerArguments = new ThumbsHandlerArguments();
+        //private readonly ThumbsHandlerArguments _wmHandlerArguments = new ThumbsHandlerArguments();
+        private ThumbsHandlerArguments _wmHandlerArguments
+        {
+            get
+            {
+                if (HttpContext.Current.Items["_wmHandlerArguments"] == null)
+                {
+                    HttpContext.Current.Items.Add("_wmHandlerArguments", new ThumbsHandlerArguments());
+                }
+                return (ThumbsHandlerArguments)HttpContext.Current.Items["_wmHandlerArguments"];
+            }
+        }
 
         /// <summary>
         /// The <see cref="IImageStore"/> instance to get images.
@@ -117,6 +128,10 @@ namespace Mod03_WebApplications.ThumbsAndWatermarking {
             }
 
             context.Response.ContentType = "image/" + _wmHandlerArguments.ImageFormat;
+            //context.Response.CacheControl = "public";
+            context.Response.Cache.SetCacheability(HttpCacheability.Server);
+            context.Response.Cache.SetValidUntilExpires(true);
+            context.Response.Cache.SetExpires(DateTime.Now.AddHours(2));
         }
         #endregion
 

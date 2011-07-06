@@ -1,23 +1,32 @@
 using System.Web;
 
-public class WaterMarkHandlerFactory : IHttpHandlerFactory {
-    private static WaterMarkHandler instance;
+namespace Mod03_WebApplications.ThumbsAndWatermarking
+{
 
-    public IHttpHandler GetHandler(HttpContext context, string requestType, string url, string pathTranslated) {
+    public class WaterMarkHandlerFactory : IHttpHandlerFactory
+    {
+        private static ThumbsAndWaterMarkHandler instance;
 
-        WaterMarkHandler aux;
+        public IHttpHandler GetHandler(HttpContext context, string requestType, string url, string pathTranslated)
+        {
 
-        if(instance == null) {
-            aux = new WaterMarkHandler("AULA de PI");
-            if(aux.IsReusable) {
-                instance = aux;
-                return instance;
+            ThumbsAndWaterMarkHandler aux;
+
+            if (instance == null)
+            {
+                aux = new ThumbsAndWaterMarkHandler();
+                if (aux.IsReusable)
+                {
+                    instance = aux;
+                    return instance;
+                }
+                return aux;
             }
-            return aux;
+            return instance;
         }
-        return instance;
-    }
 
-    public void ReleaseHandler(IHttpHandler handler) {
+        public void ReleaseHandler(IHttpHandler handler)
+        {
+        }
     }
 }
