@@ -1,0 +1,44 @@
+﻿@using Mod03_ChelasMovies.WebApp
+@model Mod03_ChelasMovies.DomainModel.Movie
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Movie</legend>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">@Model.Title</div>
+
+    <div class="display-label">Year</div>
+    <div class="display-field">@Model.Year</div>
+
+    <div class="display-label">Genre</div>
+    <div class="display-field">@Model.Genre</div>
+
+    <div class="display-label">Director</div>
+    <div class="display-field">@Model.Director</div>
+
+    <div class="display-label">Actors</div>
+    <div class="display-field">@Model.Actors</div>
+
+    <div class="display-label">Image</div>
+    <div class="display-image">@Html.Image(Model.Image)</div>
+
+    <div class="display-label">Runtime</div>
+    <div class="display-field">@Model.Runtime</div>
+</fieldset>
+
+@Html.Partial("Comments", Model.Comments)
+
+@Html.ActionLink("Add Comment", "Create", "Comments", new { movieId=Model.ID }, null)
+<p>
+@Html.ActionLink("Edit Movie", "Edit", new { id = Model.ID })
+</p>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
