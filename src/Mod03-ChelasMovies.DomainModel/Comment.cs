@@ -26,6 +26,8 @@ namespace Mod03_ChelasMovies.DomainModel
         
         public virtual Movie Movie { get; set; }
 
+        public int xpto { get; set; }
+
 
     }
 }

@@ -1,0 +1,41 @@
+﻿@model Mod03_ChelasMovies.DomainModel.Movie
+
+<fieldset>
+    <legend>Movie</legend>
+
+    <div class="display-label">Title</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Title)
+    </div>
+
+    <div class="display-label">Year</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Year)
+    </div>
+
+    <div class="display-label">Genre</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Genre)
+    </div>
+
+    <div class="display-label">Director</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Director)
+    </div>
+
+    <div class="display-label">Actors</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Actors)
+    </div>
+
+    <div class="display-label">Image</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Image)
+    </div>
+
+    <div class="display-label">Runtime</div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Runtime)
+    </div>
+</fieldset>
+

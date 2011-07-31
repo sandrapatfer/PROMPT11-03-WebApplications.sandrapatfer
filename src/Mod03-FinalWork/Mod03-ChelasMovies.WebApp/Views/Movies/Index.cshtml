@@ -1,0 +1,85 @@
+﻿@using Mod03_ChelasMovies.WebApp
+@model IEnumerable<Mod03_ChelasMovies.DomainModel.Movie>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@using (Html.BeginForm("Index", "Movies", FormMethod.Get))
+{
+    <div >
+        <span class="search-label">
+            @*@Html.LabelFor(model => model.Title)*@
+            Title
+        </span> 
+        <span class="search-field">
+            @Html.Editor("search_title")
+        </span>
+        <input type="submit" value="Filter" />
+    </div>
+}
+
+<table>
+    <tr>
+        <th>&nbsp;</th>
+        <th>&nbsp;</th>
+        <th>
+            Title
+        </th>
+        <th>
+            Year
+        </th>
+        <th>
+            Genre
+        </th>
+        <th>
+            Director
+        </th>
+        <th>
+            Actors
+        </th>
+        <th>
+            Image
+        </th>
+        <th>
+            Runtime
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.ActionLink("Details", "Details", new { id=item.ID })
+        </td>
+        <td>
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+            @item.Title
+        </td>
+        <td>
+            @item.Year
+        </td>
+        <td>
+            @item.Genre
+        </td>
+        <td>
+            @item.Director
+        </td>
+        <td>
+            @item.Actors
+        </td>
+        <td>
+            <div class="display-image-thumb">@Html.Image(@item.Image)</div>
+        </td>
+        <td>
+            @item.Runtime
+        </td>
+    </tr>
+}
+
+</table>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>

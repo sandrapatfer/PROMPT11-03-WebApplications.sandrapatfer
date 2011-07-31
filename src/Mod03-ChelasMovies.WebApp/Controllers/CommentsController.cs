@@ -12,12 +12,12 @@ namespace Mod03_ChelasMovies.WebApp.Controllers
     public class CommentsController : Controller
     {
         private readonly IMoviesService _moviesService;
-        private List<SelectListItem> ViewBagOptionList = new List<SelectListItem>() { 
-                new SelectListItem { Text = "Really Bad", Value="1" }, 
-                new SelectListItem { Text = "Bad", Value="2" }, 
-                new SelectListItem { Text = "Average", Value="3" }, 
-                new SelectListItem { Text = "Good", Value="4" }, 
-                new SelectListItem { Text = "Really Good", Value="5" } };
+        //private List<SelectListItem> ViewBagOptionList = new List<SelectListItem>() { 
+        //        new SelectListItem { Text = "Really Bad", Value=Comment.CommentRating.ReallyBad }, 
+        //        new SelectListItem { Text = "Bad", Value=Comment.CommentRating.Bad }, 
+        //        new SelectListItem { Text = "Average", Value=Comment.CommentRating.Average, Selected = true }, 
+        //        new SelectListItem { Text = "Good", Value=Comment.CommentRating.Good }, 
+        //        new SelectListItem { Text = "Really Good", Value=Comment.CommentRating.ReallyGood } };
 
         public CommentsController(IMoviesService moviesService)
         {
@@ -47,7 +47,7 @@ namespace Mod03_ChelasMovies.WebApp.Controllers
         {
             Comment c = new Comment { MovieID = movieId };
             c.Rating = Comment.CommentRating.Average;
-            ViewBag.OptionList = ViewBagOptionList;
+            //ViewBag.OptionList = ViewBagOptionList;
             return View(c);
         }
 
@@ -71,7 +71,7 @@ namespace Mod03_ChelasMovies.WebApp.Controllers
                 ModelState.AddModelError("", String.Format("Edit Failure, inner exception: {0}", e));
             }
 
-            ViewBag.OptionList = ViewBagOptionList;
+            //ViewBag.OptionList = ViewBagOptionList;
             return View(c);
         }
 

@@ -98,7 +98,14 @@ namespace Mod03_ChelasMovies.WebApp.Controllers
 
         public ActionResult Delete(int id)
         {
-            _moviesService.Delete(id);
+            Movie movie = _moviesService.Get(id);
+            return View(movie);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(Movie m)
+        {
+            _moviesService.Delete(m.ID);
             return RedirectToAction("Index");
         }
     }
