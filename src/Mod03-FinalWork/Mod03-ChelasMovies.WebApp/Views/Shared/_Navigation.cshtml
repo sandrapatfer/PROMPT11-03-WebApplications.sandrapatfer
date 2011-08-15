@@ -1,0 +1,24 @@
+﻿@model Mod03_ChelasMovies.Rep.Helpers.Collections.IPagedList<Mod03_ChelasMovies.DomainModel.Movie>
+
+<div>
+
+@if (Model.PageIndex != 0)
+{
+    <span>
+    @{ 
+        var dic = new RouteValueDictionary(Html.ViewContext.RouteData.Values);
+        dic["PageNumber"] = 0;
+        dic["SortingCriteria"] = "";
+        
+        }
+        @Html.RouteLink("|<<", "Paging", dic)
+    </span>
+}
+@if (Model.HasPreviousPage)
+{
+    <span>
+        @Html.RouteLink("<", "Paging", new { PageNumber = Model.PageIndex -1 }, null)
+    </span>
+}
+
+</div>

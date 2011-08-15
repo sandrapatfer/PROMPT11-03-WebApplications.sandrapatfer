@@ -35,6 +35,13 @@ namespace Mod03_ChelasMovies.WebApp
             //);
 
             routes.MapRoute(
+                "Paging",
+                "{controller}/Page{PageNumber}/{SortingCriteria}/{Order}",
+                new { controller = "Movies", action = "Index", PageNumber = 0, Order = "Asc", SortingCriteria = "none" },
+                new { PageNumber = @"\d+", Order = "Asc|Desc|Ascending|Descending" }
+            );
+
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Movies", action = "Index", id = UrlParameter.Optional } // Parameter defaults

@@ -1,5 +1,6 @@
 ﻿@using Mod03_ChelasMovies.WebApp
-@model IEnumerable<Mod03_ChelasMovies.DomainModel.Movie>
+
+@model Mod03_ChelasMovies.Rep.Helpers.Collections.IPagedList<Mod03_ChelasMovies.DomainModel.Movie>
 
 @{
     ViewBag.Title = "Index";
@@ -24,16 +25,16 @@
         <th>&nbsp;</th>
         <th>&nbsp;</th>
         <th>
-            Title
+            @Html.HearderLink("Title")
         </th>
         <th>
-            Year
+            @Html.HearderLink("Year")
         </th>
         <th>
-            Genre
+            @Html.HearderLink("Genre")
         </th>
         <th>
-            Director
+            @Html.HearderLink("Director")
         </th>
         <th>
             Actors
@@ -46,13 +47,14 @@
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model)
+{
     <tr>
         <td>
-            @Html.ActionLink("Details", "Details", new { id=item.ID })
+            @Html.ActionLink("Details", "Details", new { id = item.ID })
         </td>
         <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @Html.ActionLink("Delete", "Delete", new { id = item.ID })
         </td>
         <td>
             @item.Title
@@ -70,16 +72,19 @@
             @item.Actors
         </td>
         <td>
-            <div class="display-image-thumb">@Html.Image(@item.Image)</div>
+            <div class="display-image-thumb">@Html.Image(@item.Image, true)</div>
         </td>
         <td>
             @item.Runtime
         </td>
     </tr>
 }
-
 </table>
 
+@Html.Partial("_Navigation")
+
+<div>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+</div>

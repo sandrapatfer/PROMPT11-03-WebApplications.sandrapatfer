@@ -37,6 +37,14 @@ namespace Mod03_ChelasMovies.DomainModel
         
         //[StringLength(5)]
 
+        public enum PrivacyType
+        {
+            Private,
+            User,
+            Group
+        }
+        public PrivacyType Privacy { get; set; }
+        public string CreatedBy { get; set; }
 
         public virtual ICollection<Comment> Comments { get; set; }
     }

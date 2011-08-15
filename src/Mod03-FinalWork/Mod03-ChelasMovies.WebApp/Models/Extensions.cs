@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Routing;
 using System.Web.Mvc.Html;
 
 namespace Mod03_ChelasMovies.WebApp
 {
     public static class Extensions
     {
-        public static MvcHtmlString Image(this HtmlHelper htmlHelper, string imageUrl)
+        public static MvcHtmlString Image(this HtmlHelper htmlHelper, string imageUrl, bool thumb)
         {
-            return MvcHtmlString.Create(string.Format("<img src=\"{0}\" alt=\"{0}\" />", imageUrl));
+            if (thumb)
+                return MvcHtmlString.Create(string.Format("<img src=\"{0}\" alt=\"{0}\" height=100px />", imageUrl));
+            else
+                return MvcHtmlString.Create(string.Format("<img src=\"{0}\" alt=\"{0}\" />", imageUrl));
         }
 
         public static MvcHtmlString EnumDropDownList(this HtmlHelper htmlHelper, string name, Type enumType, int selectedEnumVal)
@@ -42,5 +46,12 @@ namespace Mod03_ChelasMovies.WebApp
         //    SelectList list = new SelectList(items, "Value", "Name", (int)selectedEnumVal));
         //    return htmlHelper.DropDownList(name, list);
         //}
+
+        public static MvcHtmlString HearderLink(this HtmlHelper htmlHelper, string header)
+        {
+            var routeDict = new RouteValueDictionary(htmlHelper.ViewContext.RouteData.Values);
+            routeDict["SortingCriteria"] = header; // TODO constants
+            return htmlHelper.RouteLink(header, "Paging", routeDict);
+        }
     }
 }

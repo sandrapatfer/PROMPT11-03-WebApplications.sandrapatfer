@@ -21,10 +21,9 @@ namespace Mod03_ChelasMovies.DomainModel.ServicesImpl
             IQueryable<Movie> movies = _moviesRepository.GetAll();
             return movies.ToList();
         }
-        public ICollection<Movie> GetAllMovies(string filter)
+        public IPagedList<Movie> GetAllMovies(string filter, int pageIndex, int pageSize, string sortingCriteria)
         {
-            IPagedList<Movie> movies = _moviesRepository.GetAll(filter, 0, 50, "ID");
-            return movies.ToList();
+            return _moviesRepository.GetAll(filter, pageIndex, pageSize, sortingCriteria);
         }
 
         private string GetTitle(string title)

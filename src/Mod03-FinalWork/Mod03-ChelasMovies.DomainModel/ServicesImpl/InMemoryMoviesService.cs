@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Mod03_ChelasMovies.DomainModel.Services;
+using Mod03_ChelasMovies.Rep.Helpers.Collections;
 
 namespace Mod03_ChelasMovies.DomainModel.ServicesImpl
 {
@@ -85,7 +86,7 @@ namespace Mod03_ChelasMovies.DomainModel.ServicesImpl
             return movies;
         }
 
-        public ICollection<Movie> GetAllMovies(string filter)
+        public IPagedList<Movie> GetAllMovies(string filter, int pageIndex, int pageSize, string sortingCriteria)
         {
             throw new NotImplementedException();
         }

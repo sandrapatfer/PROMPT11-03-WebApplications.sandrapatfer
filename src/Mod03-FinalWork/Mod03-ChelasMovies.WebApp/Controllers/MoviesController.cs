@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Web.Mvc;
+using Mod03_ChelasMovies.WebApp.Models;
 using Mod03_ChelasMovies.WebApp.Utils;
 using Mod03_ChelasMovies.DomainModel;
 using Mod03_ChelasMovies.DomainModel.Services;
+using System.Web.Security;
 
 namespace Mod03_ChelasMovies.WebApp.Controllers
 {
@@ -17,12 +19,14 @@ namespace Mod03_ChelasMovies.WebApp.Controllers
 
         //
         // GET: /Movies/
-        public ActionResult Index(string search_title)
+        public ActionResult Index(SortingModel sorting, string search_title)
         {
-            if (string.IsNullOrWhiteSpace(search_title))
-                return View(_moviesService.GetAllMovies());
-            else
-                return View(_moviesService.GetAllMovies(string.Format("Title.Contains(\"{0}\")", search_title)));
+            return View(_moviesService.GetAllMovies(
+                string.IsNullOrWhiteSpace(search_title) ? string.Empty : string.Format("Title.Contains(\"{0}\")", search_title),
+                sorting.PageNumber,
+                3, // TODO create constants class
+                (string.IsNullOrEmpty(sorting.SortingCriteria) || sorting.SortingCriteria.Equals("none")) ? "ID" : sorting.SortingCriteria
+                ));
         }
 
         public ActionResult Details(int id)
@@ -57,6 +61,7 @@ namespace Mod03_ChelasMovies.WebApp.Controllers
             TryUpdateModel(newMovie);
             if (ModelState.IsValid)
             {
+                newMovie.CreatedBy = Membership.GetUser().UserName;
                 _moviesService.Add(newMovie);
                 return RedirectToAction("Details", new { id = newMovie.ID });
             }
