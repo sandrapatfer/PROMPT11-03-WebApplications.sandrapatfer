@@ -50,7 +50,6 @@
   <ItemGroup>
     <Compile Include="Helpers\Collections\IPagedList.cs" />
     <Compile Include="Helpers\Collections\PagedList.cs" />
-    <Compile Include="Helpers\Collections\SearchCollection.cs" />
     <Compile Include="Helpers\Collections\SequencesToPagedListEnhancer.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="EFDbContextRepository.cs" />

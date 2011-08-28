@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Mod03_ChelasMovies.WebApp.Models
 {
-    using Rep.Helpers.Collections;
+    using DomainModel;
 
     public class SearchCollectionModelBinder : IModelBinder
     {

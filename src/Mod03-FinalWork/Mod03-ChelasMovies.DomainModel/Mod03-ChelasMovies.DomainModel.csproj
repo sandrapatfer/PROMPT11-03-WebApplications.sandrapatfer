@@ -65,6 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Utils\SearchableAttribute.cs" />
+    <Compile Include="Utils\SearchCollection.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
