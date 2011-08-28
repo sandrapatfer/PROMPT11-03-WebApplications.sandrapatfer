@@ -25,6 +25,11 @@ namespace Mod03_ChelasMovies.DomainModel.ServicesImpl
             throw new NotImplementedException();
         }
 
+        public IPagedList<Movie> GetAllMovies(SearchCollection filter, int pageIndex, int pageSize, string sortingCriteria)
+        {
+            throw new NotImplementedException();
+        }
+
         public Movie Get(int id)
         {
             return _movieDbContext.Movies.Find(id);

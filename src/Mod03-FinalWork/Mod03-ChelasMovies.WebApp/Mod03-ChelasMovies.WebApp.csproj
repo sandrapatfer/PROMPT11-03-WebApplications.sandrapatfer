@@ -70,6 +70,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\SearchCollectionModelBinder.cs" />
     <Compile Include="Models\SortingModel.cs" />
     <Compile Include="Models\Extensions.cs" />
     <Compile Include="Models\MoviesInitializer.asax.cs" />
