@@ -8,6 +8,7 @@ namespace Mod03_ChelasMovies.DomainModel.Services
     {
         ICollection<Movie> GetAllMovies();
         IPagedList<Movie> GetAllMovies(string filter, int pageIndex, int pageSize, string sortingCriteria);
+        IPagedList<Movie> GetAllMovies(SearchCollection filter, int pageIndex, int pageSize, string sortingCriteria);
         Movie Get(int id);
         Movie GetWithComments(int id);
         void Add(Movie newMovie);

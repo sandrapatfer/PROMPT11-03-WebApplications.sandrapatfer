@@ -6,19 +6,31 @@
     ViewBag.Title = "Index";
 }
 
+<fieldset>
 @using (Html.BeginForm("Index", "Movies", FormMethod.Get))
 {
-    <div >
-        <span class="search-label">
-            @*@Html.LabelFor(model => model.Title)*@
-            Title
-        </span> 
-        <span class="search-field">
-            @Html.Editor("search_title")
-        </span>
+    foreach (var prop in typeof(Mod03_ChelasMovies.DomainModel.Movie).GetProperties())
+    {
+        var attrs =  prop.GetCustomAttributes(typeof(Mod03_ChelasMovies.DomainModel.SearchableAttribute), false);
+        if (attrs.Length == 1)
+        {
+            <div>
+                <span class="search-label">@prop.Name</span>
+                <span class="search-field">@Html.Editor("search_" + prop.Name)</span>
+            </div>
+        }
+    }
+    <div>
+        @if (Request.IsAuthenticated)
+        {
+            <span>
+                @Html.CheckBox("search_user")
+            </span>
+        }
         <input type="submit" value="Filter" />
     </div>
 }
+</fieldset>
 
 <table>
     <tr>

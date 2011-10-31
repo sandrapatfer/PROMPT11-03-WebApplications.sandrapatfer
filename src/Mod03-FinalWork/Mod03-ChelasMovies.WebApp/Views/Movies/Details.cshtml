@@ -26,10 +26,11 @@
     <div class="display-field">@Model.Actors</div>
 
     <div class="display-label">Image</div>
-    <div class="display-image">@Html.Image(Model.Image)</div>
+    <div class="display-image">@Html.Image(Model.Image, false)</div>
 
-    <div class="display-label">Runtime</div>
-    <div class="display-field">@Model.Runtime</div>
+    <div class="display-label">Inserted By</div>
+    @*<div class="display-field">@Model.CreatedBy.UserName</div>*@
+    <div class="display-field">@Model.CreatedBy</div>
 </fieldset>
 
 @Html.Partial("Comments", Model.Comments)

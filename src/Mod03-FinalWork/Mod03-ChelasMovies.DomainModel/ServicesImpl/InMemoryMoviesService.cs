@@ -6,6 +6,7 @@ using Mod03_ChelasMovies.Rep.Helpers.Collections;
 namespace Mod03_ChelasMovies.DomainModel.ServicesImpl
 {
     using System.Threading;
+    using System.Web.Security;
 
     public class InMemoryMoviesService : IMoviesService
     {
@@ -90,6 +91,12 @@ namespace Mod03_ChelasMovies.DomainModel.ServicesImpl
         {
             throw new NotImplementedException();
         }
+
+        public IPagedList<Movie> GetAllMovies(SearchCollection filter, int pageIndex, int pageSize, string sortingCriteria)
+        {
+            throw new NotImplementedException();
+        }
+
 
         public Movie Get(int id)
         {

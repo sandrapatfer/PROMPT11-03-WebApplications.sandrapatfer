@@ -12,6 +12,7 @@ using Mod03_ChelasMovies.WebApp.Models;
 namespace Mod03_ChelasMovies.WebApp
 {
     using System.Data.Entity;
+    using Rep.Helpers.Collections;
 
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -46,19 +47,23 @@ namespace Mod03_ChelasMovies.WebApp
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Movies", action = "Index", id = UrlParameter.Optional } // Parameter defaults
             );
+        }
 
+        public static void RegisterModelBinders(ModelBinderDictionary binders)
+        {
+            binders.Add(typeof(SearchCollection), new SearchCollectionModelBinder());
         }
 
         protected void Application_Start()
         {
-            Database.SetInitializer(new MoviesInitializer());
+//            Database.SetInitializer(new MoviesInitializer());
             AppStart_Structuremap.Start();
             Database.SetInitializer<MovieDbContext>(new MoviesInitializer());
-
 
             AreaRegistration.RegisterAllAreas();
             RegisterGlobalFilters(GlobalFilters.Filters);
             RegisterRoutes(RouteTable.Routes);
+            RegisterModelBinders(ModelBinders.Binders);
         }
     }
 }

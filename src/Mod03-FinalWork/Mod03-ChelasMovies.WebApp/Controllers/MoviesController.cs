@@ -5,9 +5,12 @@ using Mod03_ChelasMovies.WebApp.Utils;
 using Mod03_ChelasMovies.DomainModel;
 using Mod03_ChelasMovies.DomainModel.Services;
 using System.Web.Security;
+using System.Collections.Specialized;
 
 namespace Mod03_ChelasMovies.WebApp.Controllers
 {
+    using Rep.Helpers.Collections;
+
     public class MoviesController : Controller
     {
         private readonly IMoviesService _moviesService;
@@ -19,10 +22,20 @@ namespace Mod03_ChelasMovies.WebApp.Controllers
 
         //
         // GET: /Movies/
-        public ActionResult Index(SortingModel sorting, string search_title)
+        public ActionResult Index(SortingModel sorting, bool? search_user, SearchCollection search_fields)
         {
+            string search_title = "";
+            string filter = string.IsNullOrWhiteSpace(search_title) ? string.Empty : string.Format("Title.Contains(\"{0}\")", search_title);
+            if (search_user.HasValue && search_user.Value && Request.IsAuthenticated)
+            {
+                if (!string.IsNullOrEmpty(filter))
+                {
+                    filter += " and ";
+                }
+                filter += "CreatedBy == \"" + Membership.GetUser().UserName + "\"";
+            }
             return View(_moviesService.GetAllMovies(
-                string.IsNullOrWhiteSpace(search_title) ? string.Empty : string.Format("Title.Contains(\"{0}\")", search_title),
+                search_fields,
                 sorting.PageNumber,
                 3, // TODO create constants class
                 (string.IsNullOrEmpty(sorting.SortingCriteria) || sorting.SortingCriteria.Equals("none")) ? "ID" : sorting.SortingCriteria
@@ -61,7 +74,7 @@ namespace Mod03_ChelasMovies.WebApp.Controllers
             TryUpdateModel(newMovie);
             if (ModelState.IsValid)
             {
-                newMovie.CreatedBy = Membership.GetUser().UserName;
+                //newMovie.CreatedBy = Membership.GetUser().UserName;
                 _moviesService.Add(newMovie);
                 return RedirectToAction("Details", new { id = newMovie.ID });
             }

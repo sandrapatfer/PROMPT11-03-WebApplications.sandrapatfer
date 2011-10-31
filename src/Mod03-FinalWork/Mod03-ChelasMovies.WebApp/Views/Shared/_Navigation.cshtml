@@ -11,13 +11,25 @@
         dic["SortingCriteria"] = "";
         
         }
-        @Html.RouteLink("|<<", "Paging", dic)
+        @Html.RouteLink("|<", "Paging", dic)
     </span>
 }
 @if (Model.HasPreviousPage)
 {
     <span>
         @Html.RouteLink("<", "Paging", new { PageNumber = Model.PageIndex -1 }, null)
+    </span>
+}
+@if (Model.HasNextPage)
+{
+    <span>
+        @Html.RouteLink(">", "Paging", new { PageNumber = Model.PageIndex + 1 }, null)
+    </span>
+}
+@if (Model.PageIndex != (Model.TotalPages - 1))
+{
+    <span>
+        @Html.RouteLink(">|", "Paging", new { PageNumber = Model.TotalPages - 1 }, null)
     </span>
 }
 
