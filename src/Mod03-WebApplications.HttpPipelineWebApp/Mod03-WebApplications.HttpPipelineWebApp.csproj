@@ -59,6 +59,7 @@
     <Content Include="Content\button-login.jpg" />
     <Content Include="Content\members-login-right.jpg" />
     <Content Include="Content\Site.css" />
+    <Content Include="Default.html" />
     <Content Include="private\Default.html" />
     <Content Include="Global.asax" />
     <Content Include="public\Default.html" />
@@ -100,7 +101,9 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="web.Debug.config">
